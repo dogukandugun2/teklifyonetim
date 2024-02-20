@@ -1,0 +1,101 @@
+{% extends "sidebar.html" %}
+{% block content%}
+<div class="page-wrapper">
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+      <div class="container-xl">
+        <div class="row g-2 align-items-center">
+          <div class="col">
+            <h2 class="page-title">
+              Teklif Detay
+            </h2>
+          </div>
+          <!-- Page title actions -->
+          <div class="col-auto ms-auto d-print-none">
+            <button type="button" class="btn btn-primary" onclick="javascript:window.print();">
+              <!-- Download SVG icon from http://tabler-icons.io/i/printer -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" /><path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" /><path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" /></svg>
+              Print Invoice
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1 class="navbar-brand navbar-brand-autodark">
+        <a href=".">
+          <img src="/static/img/logo.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+        </a>
+      </h1>
+    <!-- Page body -->
+    <div class="page-body">
+        <div class="container-xl">
+          <div class="card card-lg">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  {% comment %} <p class="h3">SUMIKO STEEL METAL SAN.  ve TIC. LTD.ŞTİ</p>
+                  <address>
+                    Bostancı Mah. Prof Ali Nihat Tarlan Cad.<br>
+                    No: 91/9<br>
+                    Kadıköy / İSTANBUL<br>
+                    Tel : +90 539 796 04 34 <br>
+                    Mail : dogus.ozdemir@sumikosteel.com
+                  </address> {% endcomment %}
+                  <p class="h3">A ŞİRKETİ</p>
+                  <address>
+                    ŞİRKET ADRESS BİLGİLERİ
+                  </address>
+                </div>
+                <div class="col-6 text-end">
+                  <p class="h3">{{get_offer_object.company.name}}</p>
+                  <address>
+                    {{get_offer_object.company.address}}<br>
+                    {{get_offer_object.company.city}}, {{country_name}}<br>
+                    {{get_offer_object.company.contact_name}}<br>
+                    {{get_offer_object.company.phone}}<br>    
+                    {{get_offer_object.company.mail}}
+                  </address>
+                </div>
+                <div class="col-12 my-5">
+                  <h1>Teklif No : {{get_offer_object.id}}</h1>
+                </div>
+              </div>
+              <table class="table table-transparent table-responsive">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width: 1%"></th>
+                    <th>Product</th>
+                    <th class="text-center" style="width: 1%">Qnt</th>
+                    <th class="text-end" style="width: 1%">Unit</th>
+                    <th class="text-end" style="width: 1%">Amount</th>
+                  </tr>
+                </thead>
+                
+                {% for offer_product in offer_products %}
+                <tr>
+                  <td class="text-center">{{ forloop.counter }}</td>
+                  <td>
+                    <p class="strong mb-1">{{ offer_product.product.quality }}</p>
+                    <div class="text-muted">{{ offer_product.product.description }}</div>
+                  </td>
+                  <td class="text-center">
+                    {{ offer_product.quantity }}
+                  </td>
+                  <td class="text-end">${{offer_product.offer_product_price}}</td>
+                  <td class="text-end" id="totalPrice">${{ offer_product.line_total }}</td>
+                </tr>
+                {% endfor %}
+                
+                <tr>
+                  <td colspan="4" class="strong font-weight-bold text-uppercase text-end">Total Due</td>
+                  <td class="font-weight-bold text-end">${{ total_prize }}</td>
+                </tr>
+              </table>
+              <p class="text-muted text-center mt-5">{{ get_offer_object.created_at }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+{% endblock %}

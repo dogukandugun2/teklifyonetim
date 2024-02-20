@@ -1,0 +1,145 @@
+{% extends "sidebar.html" %}
+{% block content%}
+<div class="page-wrapper">
+  <!-- Page header -->
+  <div class="page-header d-print-none">
+    <div class="container-xl">
+      <div class="row g-2 align-items-center">
+        <div class="col">
+          <!-- Page pre-title -->
+          <div class="page-pretitle">
+            sumikosteel
+          </div>
+          <h2 class="page-title">
+            Şirketler
+          </h2>
+        </div>
+        <!-- Page title actions -->
+        
+      </div>
+    </div>
+  </div>
+  <!-- Page body -->
+  <div class="page-body">
+    <div class="container-xl">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ get_company_object.name }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="datagrid">
+            <div class="datagrid-item">
+              <div class="datagrid-title">Contact</div>
+              <div class="datagrid-content">{{get_company_object.contact_name}}</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Mail</div>
+              <div class="datagrid-content">{{get_company_object.mail}}</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Phone Number</div>
+              <div class="datagrid-content">{{get_company_object.phone}}</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Final Offer Date</div>
+              <div class="datagrid-content">–</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Cauntry</div>
+              <div class="datagrid-content">
+                <div class="d-flex align-items-center">
+                  <span class="flag flag-country-{{get_company_object.country}}"></span>  
+                  {{country_display_name}}
+                </div>
+              </div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">City</div>
+              <div class="datagrid-content">{{get_company_object.city}}</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Field</div>
+              <div class="datagrid-content">{{get_company_object.field_of_activity}}</div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Address</div>
+              <div class="datagrid-content">
+                {{get_company_object.address}}
+              </div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Web Site</div>
+              <div class="datagrid-content">
+                {{get_company_object.web_site}}
+              </div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Sub Company</div>
+              <div class="datagrid-content">
+                {{get_company_object.sub_company}}
+              </div>
+            </div>
+            <div class="datagrid-item">
+              <div class="datagrid-title">Base Customers</div>
+              <div class="datagrid-content">
+                {{get_company_object.base_customer}}
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <br> <br>
+    <div class="container-xl">
+      <div class="card">
+        <div class="card-body">
+          <div id="table-default" class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><button class="table-sort" data-sort="sort-id">Teklif No</button></th>
+                  <th><button class="table-sort" data-sort="sort-company">Company</button></th>
+                  <th><button class="table-sort" data-sort="sort-type">Type</button></th>
+                  <th><button class="table-sort" data-sort="sort-pay">Pay</button></th>
+                  <th><button class="table-sort" data-sort="sort-date">Date</button></th>
+                  <th><button class="table-sort" data-sort="sort-quantity">Quantity</button></th>
+                  <th><button class="table-sort" data-sort="sort-progress">Progress</button></th>
+                </tr>
+              </thead>
+              <tbody class="table-tbody">
+                {% for offer in company_offers%}
+                <tr>
+                  <td class="sort-id">{{ offer.id }}</td>
+                  <td><a href="/company/s/{{offer.company.slug}}" class="text-reset" tabindex="-1">{{offer.company.name}}</a></td>
+                  <td class="sort-type">{{offer.offer_type}}</td>
+                  <td class="sort-pay">{{offer.total_value}}</td>
+                  <td class="sort-date" data-date="1628071164">{{offer.created_at}}</td>
+                  <td class="sort-quantity">1</td>
+                  <td class="text-end">
+                    <form method="post" action="{% url 'delete_offer' offer.id %}">
+                      {% csrf_token %}
+                    <a href="/offer/s/{{ offer.id }}" class="btn btn-primary" target="_blank" rel="noopener">Detay</a>
+                    <a href="/offer/c/{{ offer.id }}" class="btn btn-secondary" target="_blank" rel="noopener">Düzenle</a>
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                  </form>
+                  </td>
+                </tr>
+                {% endfor%}
+                
+                
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div> 
+      <br><br>
+      
+  </div>
+  
+</div>
+{% endblock%}

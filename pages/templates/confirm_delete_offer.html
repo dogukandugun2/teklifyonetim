@@ -1,0 +1,7 @@
+<h2>Teklifi Sil</h2>
+    <p>Emin misiniz?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a href="{% url 'offer_list' %}" class="btn btn-secondary">Hayır, Geri Dön</a>
+    </form>

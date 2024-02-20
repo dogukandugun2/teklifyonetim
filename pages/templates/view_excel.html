@@ -1,0 +1,51 @@
+{% extends "sidebar.html" %}
+{% block content%}
+<div class="page-wrapper">
+  <!-- Page header -->
+  <div class="page-header d-print-none">
+    <div class="container-xl">
+      <div class="row g-2 align-items-center">
+        <div class="col">
+          <!-- Page pre-title -->
+          <div class="page-pretitle">
+            sumikosteel
+          </div>
+          <h2 class="page-title">
+            Şirketler
+          </h2>
+        </div>
+        <!-- Page title actions -->
+        
+      </div>
+    </div>
+  </div>
+  <!-- Page body -->
+  <div class="page-body">
+      <div class="container-xl">
+          <div class="card">
+              
+              
+              
+           
+
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="excel_file">
+                    <button type="submit">Dosyayı Gönder</button>
+                </form>
+                
+                {% if html_table %}
+                    {{ html_table|safe }}
+                {% endif %}
+
+            </div>
+      </div> 
+      <br><br>
+      
+    
+    
+  </div>
+  
+</div>
+{% endblock%}

@@ -1,0 +1,228 @@
+<!doctype html>
+{% comment %} <form action="{% url 'product_statistic' %}" method="GET">
+    <label for="product">Ürün Seçiniz:</label>
+    <select name="product_id" id="product">
+        {% for product in products %}
+            {% if product.id == selected_product_id %}
+                <option value="{{ product.id }}" selected>{{ product.description }}</option>
+            {% else %}
+                <option value="{{ product.id }}">{{ product.description }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <button type="submit">Gönder</button>
+</form>
+
+{% if latest_offer %}
+    <p>latest_offer: <a href="/offer/c/{{ latest_offer.id }}">{{ latest_offer }}</a></p>
+{% endif %}
+
+{% if cheapest_offer %}
+    <p>cheapest_offer: <a href="/offer/c/{{ cheapest_offer.id }}">{{ cheapest_offer }}</a></p>
+{% endif %}
+
+{% if most_quantity_offer %}
+    <p>most_quantity_offer: <a href="/offer/c/{{ most_quantity_offer.id }}">{{ most_quantity_offer }}</a></p>
+{% endif %} {% endcomment %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <!-- CSS files -->
+    <link href="/static/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+      	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+      body {
+      	font-feature-settings: "cv03", "cv04", "cv11";
+      }
+    </style>
+  </head>
+  <body >
+    <script src="/static/dist/js/demo-theme.min.js?1684106062"></script>
+    <div class="page">
+      <!-- Sidebar -->
+      <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="/">
+              <img src="/static/img/logo.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            </a>
+          </h1>
+          
+          <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Anasayfa
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Teklifler
+                  </span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <a class="dropdown-item" href="/offer/?q=alim">
+                        Alım Teklifi
+                      </a>
+                      <a class="dropdown-item" href="/offer/?q=satis">
+                        Satış teklifi
+                      </a>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/company" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Şirketler
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/statistic" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Ürün İstatistik
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/view-excel" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>                  </span>
+                  <span class="nav-link-title">
+                    Alım Teklifi Yükle
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/best-offer" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>                  </span>
+                  <span class="nav-link-title">
+                    Teklif Sihirbazı 
+                  </span>
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <!-- Page header -->
+        
+        <!-- Page body -->
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="card">
+              <div class="card-body">
+                <div id="table-default" class="table-responsive">
+                  <h1>En Uygun Fiyatlı Ürünler</h1>
+                  <style>
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </style>
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Offer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product_name, info in best_prices.items %}
+                        <tr>
+                            <td>{{ product_name }}</td>
+                            <td>{{ info.price }}</td>
+                            <td>{{ info.offer }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+<br>
+            <form action="{% url 'get_best_offer' %}" method="GET">
+              <div class="mb-3">
+                
+                  <label class="form-label">Son Teklif Adeti</label>
+                  <input type="number" name="adet" class="form-control" value=1>
+              </div>
+                <button class="btn btn-success d-none d-sm-inline-block" type="submit">Gönder</button>
+            </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+            
+      </div>
+    </div>
+    
+    <!-- Libs JS -->
+    <script src="/static/dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
+    <!-- Tabler Core -->
+    <script src="/static/dist/js/tabler.min.js?1684106062" defer></script>
+    <script src="/static/dist/js/demo.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/list.js/dist/list.min.js?1684106062" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: [ 'sort-id', 'sort-type', 'sort-company', 'sort-pay',
+                { attr: 'data-date', name: 'sort-date' },
+                { attr: 'data-progress', name: 'sort-progress' },
+                'sort-quantity'
+            ]
+        });
+        })
+      </script>
+    
+  </body>
+</html>

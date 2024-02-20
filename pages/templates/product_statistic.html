@@ -1,0 +1,399 @@
+<!doctype html>
+{% comment %} <form action="{% url 'product_statistic' %}" method="GET">
+    <label for="product">Ürün Seçiniz:</label>
+    <select name="product_id" id="product">
+        {% for product in products %}
+            {% if product.id == selected_product_id %}
+                <option value="{{ product.id }}" selected>{{ product.description }}</option>
+            {% else %}
+                <option value="{{ product.id }}">{{ product.description }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <button type="submit">Gönder</button>
+</form>
+
+{% if latest_offer %}
+    <p>latest_offer: <a href="/offer/c/{{ latest_offer.id }}">{{ latest_offer }}</a></p>
+{% endif %}
+
+{% if cheapest_offer %}
+    <p>cheapest_offer: <a href="/offer/c/{{ cheapest_offer.id }}">{{ cheapest_offer }}</a></p>
+{% endif %}
+
+{% if most_quantity_offer %}
+    <p>most_quantity_offer: <a href="/offer/c/{{ most_quantity_offer.id }}">{{ most_quantity_offer }}</a></p>
+{% endif %} {% endcomment %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <!-- CSS files -->
+    <link href="/static/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+      	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+      body {
+      	font-feature-settings: "cv03", "cv04", "cv11";
+      }
+    </style>
+  </head>
+  <body >
+    <script src="/static/dist/js/demo-theme.min.js?1684106062"></script>
+    <div class="page">
+      <!-- Sidebar -->
+      <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="/">
+              <img src="/static/img/logo.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            </a>
+          </h1>
+          
+          <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Anasayfa
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Teklifler
+                  </span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <a class="dropdown-item" href="/offer/?q=alim">
+                        Alım Teklifi
+                      </a>
+                      <a class="dropdown-item" href="/offer/?q=satis">
+                        Satış teklifi
+                      </a>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/company" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Şirketler
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/statistic" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Ürün İstatistik
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/view-excel" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>                  </span>
+                  <span class="nav-link-title">
+                    Alım Teklifi Yükle
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/best-offer" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path></svg>                  </span>
+                  <span class="nav-link-title">
+                    Teklif Sihirbazı 
+                  </span>
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <!-- Page header -->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  sumikosteel
+                </div>
+                <h2 class="page-title">
+                  Ürün İstatistik
+                  
+                </h2>
+              </div>
+              <!-- Page title actions -->
+              <form action="{% url 'product_statistic' %}" method="GET">
+              <div class="mb-3">
+                <div class="form-label">Select</div>
+                <select name="product_id" id="product" class="form-select">
+                    {% for product in products %}
+                        {% if product.id == selected_product_id %}
+                            asd
+                            <option value="{{ product.id }}" selected>{{ product.description }}</option>
+                        {% else %}
+                            <option value="{{ product.id }}">{{ product.description }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select><br>
+                <button class="btn btn-success d-none d-sm-inline-block" type="submit">Gönder</button>
+            </form>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Page body -->
+        <div class="page-body">
+
+            <h1 style ="text-align: center;">SEÇİLEN ÜRÜN : {{ secilen_urun.description}} </h1>
+
+            {% if latest_offer %}
+            <div class="container-xl">
+              <div class="card">
+                <div class="card-body">
+                    <h1> Son Yapılan Teklif </h1>
+                  <div id="table-default" class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th><button class="table-sort" data-sort="sort-id">Teklif No</button></th>
+                          <th><button class="table-sort" data-sort="sort-company">Offer</button></th>
+                          <th><button class="table-sort" data-sort="sort-type">Type</button></th>
+                          <th><button class="table-sort" data-sort="sort-pay">Pay</button></th>
+                          <th><button class="table-sort" data-sort="sort-date">Date</button></th>
+                          <th><button class="table-sort" data-sort="sort-quantity">Quantity</button></th>
+                          <th><button class="table-sort" data-sort="sort-progress">Progress</button></th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-tbody">
+                        
+                        <tr>
+                          <td class="sort-id">{{ latest_offer.id }}</td>
+                          <td class="sort-id">{{ latest_offer }}</td>
+                          <td class="sort-type">{{latest_offer.offer_type}}</td>
+                          <td class="sort-pay">{{latest_offer.total_value}}</td>
+                          <td class="sort-date" data-date="1628071164">{{latest_offer.created_at}}</td>
+                          <td class="sort-quantity">1</td>
+                          <td class="text-end">
+                            
+                            <a href="/offer/s/{{ latest_offer.id }}" class="btn btn-primary" target="_blank" rel="noopener">Detay</a>
+                            <a href="/offer/c/{{ latest_offer.id }}" class="btn btn-secondary" target="_blank" rel="noopener">Düzenle</a>
+                            
+                          </td>
+                        </tr>
+                        
+                        
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            <br>
+            {% if cheapest_offer %}
+            <div class="container-xl">
+                <div class="card">
+                  <div class="card-body">
+                      <h1> Fiyatı En Ucuz Olan Teklif </h1>
+                    <div id="table-default" class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th><button class="table-sort" data-sort="sort-id">Teklif No</button></th>
+                            <th><button class="table-sort" data-sort="sort-company">Company</button></th>
+                            <th><button class="table-sort" data-sort="sort-type">Type</button></th>
+                            <th><button class="table-sort" data-sort="sort-pay">Pay</button></th>
+                            <th><button class="table-sort" data-sort="sort-date">Date</button></th>
+                            <th><button class="table-sort" data-sort="sort-quantity">Quantity</button></th>
+                            <th><button class="table-sort" data-sort="sort-progress">Progress</button></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                          
+                          <tr>
+                            <td class="sort-id">{{ cheapest_offer.id }}</td>
+                            <td class="sort-id">{{ cheapest_offer }}</td>
+                            <td class="sort-type">{{cheapest_offer.offer_type}}</td>
+                            <td class="sort-pay">{{cheapest_offer.total_value}}</td>
+                            <td class="sort-date" data-date="1628071164">{{cheapest_offer.created_at}}</td>
+                            <td class="sort-quantity">1</td>
+                            <td class="text-end">
+                              
+                              <a href="/offer/s/{{ cheapest_offer.id }}" class="btn btn-primary" target="_blank" rel="noopener">Detay</a>
+                              <a href="/offer/c/{{ cheapest_offer.id }}" class="btn btn-secondary" target="_blank" rel="noopener">Düzenle</a>
+                              
+                            </td>
+                          </tr>
+                          
+                          
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if most_quantity_offer %}
+            <div class="container-xl">
+                <div class="card">
+                  <div class="card-body">
+                      <h1>En Çok Adet Olan Teklif</h1>
+                    <div id="table-default" class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th><button class="table-sort" data-sort="sort-id">Teklif No</button></th>
+                            <th><button class="table-sort" data-sort="sort-company">Company</button></th>
+                            <th><button class="table-sort" data-sort="sort-type">Type</button></th>
+                            <th><button class="table-sort" data-sort="sort-pay">Pay</button></th>
+                            <th><button class="table-sort" data-sort="sort-date">Date</button></th>
+                            <th><button class="table-sort" data-sort="sort-quantity">Quantity</button></th>
+                            <th><button class="table-sort" data-sort="sort-progress">Progress</button></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                          
+                          <tr>
+                            <td class="sort-id">{{ most_quantity_offer.id }}</td>
+                            <td class="sort-id">{{ most_quantity_offer }}</td>
+                            <td class="sort-type">{{most_quantity_offer.offer_type}}</td>
+                            <td class="sort-pay">{{most_quantity_offer.total_value}}</td>
+                            <td class="sort-date" data-date="1628071164">{{most_quantity_offer.created_at}}</td>
+                            <td class="sort-quantity">1</td>
+                            <td class="text-end">
+                              
+                              <a href="/offer/s/{{ most_quantity_offer.id }}" class="btn btn-primary" target="_blank" rel="noopener">Detay</a>
+                              <a href="/offer/c/{{ most_quantity_offer.id }}" class="btn btn-secondary" target="_blank" rel="noopener">Düzenle</a>
+                              
+                            </td>
+                          </tr>
+                          
+                          
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <!-- create_offer.html -->
+              
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Teklif Ekle</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                  <form method="post" action="{% url 'offer' %}">
+                      {% csrf_token %}
+                      
+                      <div class="mb-3">
+                          <label class="form-label">Şirket</label>
+                          <select name="company_id" class="form-select">
+                              {% for company in companies %}
+                                  <option value="{{ company.id }}">{{ company.name }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Teklif Türü</label>
+                        <select name="offer_type" class="form-select">
+                            <option value="alim">Alım Teklifi</option>
+                            <option value="satis">Satış Teklifi</option>
+                        </select>
+                      </div>
+                      <!-- Diğer form alanları buraya eklenebilir -->
+
+                      <div class="modal-footer">
+                          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                              İptal
+                          </a>
+                          <button type="submit" class="btn btn-primary ms-auto">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                              Yeni teklif oluştur
+                          </button>
+                      </div>
+                  </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Libs JS -->
+    <script src="/static/dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
+    <!-- Tabler Core -->
+    <script src="/static/dist/js/tabler.min.js?1684106062" defer></script>
+    <script src="/static/dist/js/demo.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/list.js/dist/list.min.js?1684106062" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: [ 'sort-id', 'sort-type', 'sort-company', 'sort-pay',
+                { attr: 'data-date', name: 'sort-date' },
+                { attr: 'data-progress', name: 'sort-progress' },
+                'sort-quantity'
+            ]
+        });
+        })
+      </script>
+    
+  </body>
+</html>

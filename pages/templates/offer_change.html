@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <!-- CSS files -->
+    <link href="/static/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="/static/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      :root {
+      	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      }
+      body {
+      	font-feature-settings: "cv03", "cv04", "cv11";
+      }
+    </style>
+  </head>
+  <body >
+    <script src="/static/dist/js/demo-theme.min.js?1684106062"></script>
+    <div class="page">
+      <!-- Sidebar -->
+      <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="/">
+              <img src="/static/img/logo.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            </a>
+          </h1>
+          
+          <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Anasayfa
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /><path d="M16 5.25l-8 4.5" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Teklifler
+                  </span>
+                </a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <a class="dropdown-item" href="/offer/?q=alim">
+                        Alım Teklifi
+                      </a>
+                      <a class="dropdown-item" href="/offer/?q=satis">
+                        Satış teklifi
+                      </a>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/company" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Şirketler
+                  </span>
+                </a>
+              </li>
+              
+              
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper">
+        <!-- Page header -->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  sumikosteel
+                </div>
+                <h2 class="page-title">
+                        Teklif NO : {{get_offer_object.id}} <br>
+                        Teklif Tip : {{ get_offer_object.offer_type}} <br>
+                        Firma İsmi : {{ get_offer_object.company.name }} <br>
+                        
+                </h2>
+              </div>
+              <!-- Page title actions -->
+              
+            </div>
+          </div>
+        </div>
+        <!-- Page body -->
+        <div class="page-body">
+            <div class="container-xl">
+              <div class="card">
+                <div class="card-body">
+                  <div id="table-default" class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th><button class="table-sort" data-sort="sort-id">Ürün Id</button></th>
+                          <th><button class="table-sort" data-sort="sort-desc">Açıklama</button></th>
+                          <th><button class="table-sort" data-sort="sort-quality">Quality</button></th>
+                          <th><button class="table-sort" data-sort="sort-size">Size (mm)</button></th>
+                          <th><button class="table-sort" data-sort="sort-color">Color (Ral)</button></th>
+                          <th><button class="table-sort" data-sort="sort-paint">Paint(μm)</button></th>
+                          <th><button class="table-sort" data-sort="sort-zinc">Zinc(g/sm)</button></th>
+                          <th><button class="table-sort" data-sort="sort-pay">Unit Price (usd/ton)</button></th>
+                          <th><button class="table-sort" data-sort="sort-quantity">Quantity</button></th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-tbody">
+                        {% for offer_product in offer_products %}
+                        <tr>
+                          <td class="sort-id"><a href="/admin/pages/product/{{ offer_product.product.id }}/change/" class="text-reset" tabindex="-1">{{ offer_product.product.id }}</a></td>
+                          <td class="sort-desc">{{offer_product.product.description}}</td>
+                          <td class="sort-quality">{{offer_product.product.quality}}</td>
+                          <td class="sort-size">{{offer_product.product.size}}</td>
+                          <td class="sort-color">{{offer_product.product.color}}</td>
+                          <td class="sort-paint">{{ offer_product.product.paint }}</td>
+                          <td class="sort-zinc">{{ offer_product.product.zinc }}</td>
+                          <td class="sort-pay">{{ offer_product.offer_product_price }}</td>
+                          <td class="sort-quantity">{{ offer_product.quantity }}</td>
+                          <td class="text-end">
+                            
+                            <form method="post" action="{% url 'product_delete_from_offer' get_offer_object.id offer_product.product.id %}">                            {% comment %} <a href="s/{{ offer.id }}" class="btn btn-primary" target="_blank" rel="noopener">Detay</a> {% endcomment %}
+                            <a href="/admin/pages/offer/{{ offer.id }}/change/" class="btn btn-secondary" target="_blank" rel="noopener">Düzenle</a>
+                            
+                                {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                          </form>
+                          </td>
+                        </tr>
+                        {% endfor%}
+                        
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-2 col-xl py-3">
+                    <a href="#" class="btn btn-success d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                      Teklife Ürün Ekle
+                    </a>
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <!-- create_offer.html -->
+              
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Teklif Ekle</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                  <form method="post" action="/offer/c/{{ get_offer_object.id }}">
+                      {% csrf_token %}
+                      
+                      <div class="mb-3">
+                          <label class="form-label">Ürün</label>
+                          <select name="product_id" class="form-select">
+                              {% for product in all_product %}
+                                  <option value="{{ product.id }}">{{ product.description }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Adet</label>
+                        <input type="number" name="adet" class="form-control" value=1>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Fiyat</label>
+                        <input type="number" name="fiyat" class="form-control" value=1>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Teklif No</label>
+                        <input type="number" name="offer_id" class="form-control" value={{ get_offer_object.id}} readonly>
+                      </div>
+
+                      <div class="modal-footer">
+                          <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                              İptal
+                          </a>
+                          <button type="submit" class="btn btn-primary ms-auto">
+                              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                              Yeni Ürünü Ekle
+                          </button>
+                      </div>
+                  </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Libs JS -->
+    <script src="/static/dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
+    <script src="/static/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
+    <!-- Tabler Core -->
+    <script src="/static/dist/js/tabler.min.js?1684106062" defer></script>
+    <script src="/static/dist/js/demo.min.js?1684106062" defer></script>
+    <script src="/static/dist/libs/list.js/dist/list.min.js?1684106062" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const list = new List('table-default', {
+            sortClass: 'table-sort',
+            listClass: 'table-tbody',
+            valueNames: [ 'sort-id', 'sort-desc', 'sort-quality', 'sort-size','sort-color','sort-paint','sort-zinc','sort-pay','sort-quantity',
+                { attr: 'data-date', name: 'sort-date' },
+                { attr: 'data-progress', name: 'sort-progress' },
+                'sort-quantity'
+            ]
+        });
+        })
+      </script>
+    
+  </body>
+</html>
